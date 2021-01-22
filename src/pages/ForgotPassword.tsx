@@ -9,7 +9,7 @@ const ForgotPassword = ()=>{
     type PersonScore = {
         password: string;
       };
-    const {handleSubmit,control,errors } = useForm<PersonScore>();
+    const {handleSubmit,control} = useForm<PersonScore>();
     const {dispatch} = useContext(UserContext)
 
     const sendPassword = ()=>{

@@ -17,8 +17,8 @@ const Register = () => {
         repeatpassword:string;
       };
     const history = useHistory()
-    const {state,dispatch} = useContext(UserContext)
-    const {register,handleSubmit,errors,control } = useForm<PersonScore>();
+    const {dispatch} = useContext(UserContext)
+    const {handleSubmit,errors,control } = useForm<PersonScore>();
     const RegisterUser = async(data:PersonScore)=>{
         await config.auth().createUserWithEmailAndPassword(data.email,data.password).then(result => {
             const uid = result.user?.uid

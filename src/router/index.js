@@ -18,7 +18,22 @@ const RouterNavbar = ()=>{
   const [dataUser,setDataUser] = React.useState({}) 
   // let authenticated
   useEffect(()=>{
-    const dataVerify = async()=>{
+
+    const getUserData = async(id,email)=>{
+      const data = await usuario.where("id_user","==",id).get()
+      const arrayData =  data.docs.map(doc => ({id:doc.id,...doc.data()}))
+      const dataParam = arrayData[0];
+      const param={
+        firstName:dataParam.firstName,
+        lastName:dataParam.lastName
+      }
+        setDataUser(param)
+        Object.assign(param,{email:email})
+        dispatch({type:"USER_AUTHENTICATED",payload:param})
+    }
+  
+
+    const dataVerify =()=>{
       config.auth().onAuthStateChanged(function(user) {
         if (user) {
           const {displayName,email,uid} = user
@@ -41,22 +56,10 @@ const RouterNavbar = ()=>{
         }
       });
     }
-    dataVerify()
-  },[])
+    dataVerify();
+  },[]);
 
-  const getUserData = async(id,email)=>{
-    const data = await usuario.where("id_user","==",id).get()
-    const arrayData =  data.docs.map(doc => ({id:doc.id,...doc.data()}))
-    const dataParam = arrayData[0];
-    const param={
-      firstName:dataParam.firstName,
-      lastName:dataParam.lastName
-    }
-      setDataUser(param)
-      Object.assign(param,{email:email})
-      dispatch({type:"USER_AUTHENTICATED",payload:param})
-  }
-
+  
   const logoutUser = ()=>{
     config.auth().signOut().then(()=>{
       removeToken()

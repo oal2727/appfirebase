@@ -1,6 +1,5 @@
 import React from "react"
 import {Route,Redirect} from 'react-router-dom'
-import {UserContext} from "../../context/UserContextProvider"
 import {getToken} from "../../config/Token"
 
 
