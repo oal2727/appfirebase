@@ -95,6 +95,16 @@ const RouterNavbar = ()=>{
           </Link>
         </div>
         : 
+          <div style={{display:"flex",width:"100%",justifyContent:"space-between"}}>
+             
+             <Link
+          style={{ marginRight: 10,marginTop:10, color: "white", textDecoration: "none" }}
+          to="/Dashboard"
+          variant="h6"
+          >
+          Dashboard
+        </Link>
+
           <div style={{display:"flex"}}>
           <DropDownComponent 
           dataUser={dataUser}
@@ -107,6 +117,8 @@ const RouterNavbar = ()=>{
           >
           Log Out
         </Link>
+          </div>
+
           </div>
         }
         </NavbarComponent>

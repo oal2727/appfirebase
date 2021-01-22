@@ -64,7 +64,6 @@ const DropDownComponent = ({dataUser})=>{
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem as={Link}  to="/Dashboard" >Dashboard</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
