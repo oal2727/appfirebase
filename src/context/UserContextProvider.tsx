@@ -7,7 +7,7 @@ const initialState={
   open:false,
   snackbar:{message:"",type:""},
   authenticated:false,
-  usuario:{firstName:"",lastName:"",email:"",password:""}
+  usuario:{firstName:"",lastName:"",email:"",password:""},
 }
 
 export const UserContext = createContext<IState | any>(initialState);

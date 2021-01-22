@@ -4,7 +4,8 @@ type ACTIONTYPE =
 | { type: "TOOGLE_OPEN"; payload: boolean }
   | { type: "TOOGLE_SNACKBAR"; payload: ISnackbar }
   | {type:"TOOGLE_AUTHENTICATED",payload:boolean}
-  | {type:"USER_AUTHENTICATED",payload:IUsuario};
+  | {type:"USER_AUTHENTICATED",payload:IUsuario}
+  | {type:"UPDATE_SPINNER",payload:boolean};
 
 
 export const UserReducer =(state:IState,action:ACTIONTYPE)=>{
@@ -23,7 +24,6 @@ export const UserReducer =(state:IState,action:ACTIONTYPE)=>{
             }
         }
         case "TOOGLE_AUTHENTICATED":
-            console.log("show toogle" + action.payload)
             return{
                 ...state,
                 authenticated:action.payload
@@ -37,7 +37,8 @@ export const UserReducer =(state:IState,action:ACTIONTYPE)=>{
                     email:action.payload.email,
                     password:""
                 }
-            }
+        }
+       
         default:
             return state;
     }

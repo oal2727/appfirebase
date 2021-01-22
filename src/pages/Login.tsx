@@ -23,22 +23,22 @@ const Login = () => {
 
     const LoginApp = async(data:PersonScore)=>{
       await config.auth().signInWithEmailAndPassword(data.email,data.password).then(result =>{
-        const id = result?.user?.uid
-          setToken("true")
-         changeSnackbar("success","Login Sucessfull")
-          history.push("/Dashboard")
+        sucessfullLogin("Sucessfull Login") 
         }).catch(error => {
           changeSnackbar("error",error.message)
         })
     }
     const socialLogin = async(provider:any)=>{
         await config.auth().signInWithPopup(provider).then(result => {
-            console.log(result)
-            changeSnackbar("success","Sucessfull Login")
-            history.push("/Dashboard")
+          sucessfullLogin("Sucessfull with Login Social")  
         }).catch(error => {
           changeSnackbar("error",error.message)
         })
+    }
+    const sucessfullLogin = (message:string)=>{
+      setToken("true")
+      changeSnackbar("success",message)
+      history.push("/Dashboard")
     }
     const changeSnackbar = (type:any,message:any)=>{
         var param = {

@@ -1,6 +1,6 @@
 import React,{useContext,useEffect} from "react"
 import NavbarComponent from "../components/NavbarComponent"
-import {BrowserRouter as Router,Route,useHistory,Link,Switch} from "react-router-dom"
+import {BrowserRouter as Router,Route,Link,Switch} from "react-router-dom"
 import Login from "../pages/Login"
 import Register from "../pages/Register"
 import Dashboard from "../pages/Dashboard"
@@ -15,7 +15,6 @@ import {removeToken} from "../config/Token"
 const RouterNavbar = ()=>{
 
   const {state,dispatch} = useContext(UserContext)
-  const history = useHistory()
   const [dataUser,setDataUser] = React.useState({}) 
   // let authenticated
   useEffect(()=>{
@@ -60,19 +59,14 @@ const RouterNavbar = ()=>{
 
   const logoutUser = ()=>{
     config.auth().signOut().then(()=>{
-      console.log("cerro session correctamente")
       removeToken()
-      history.push("/LogIn")
       const param={
         firstName:"",
         lastName:"",
         email:""
       }
-      
       dispatch({type:"USER_AUTHENTICATED",payload:param})
       dispatch({type:"TOOGLE_AUTHENTICATED",payload:false})
-    }).catch(err => {
-      console.log(err)
     })
   }
 
